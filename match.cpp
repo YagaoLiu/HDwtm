@@ -31,6 +31,7 @@ void match ( vector < unsigned int > * Occ )
 	while ( i < n - m + 1 )
 	{
 		string qstr;
+		unsigned int hd = q;
 		double p = 1;
 		vector < string > qlist;
 
@@ -39,22 +40,23 @@ void match ( vector < unsigned int > * Occ )
 		for ( l = 0; l < qlist.size(); l ++ )
 		{
 			unsigned int id = Str2Num ( qlist[l] );
-			unsigned int hd = index[id];
-			if ( hd <= k )
-			{
-				if ( verify ( i ) )
-				{
-					Occ->push_back ( i );
-				}
-				i += 1;
-				j += 1;
-			}
-			else
-			{
-				/* skip */
-				i += m - q;
-				j += m - q;
-			}
+			hd = min ( hd, index[id] );
 		}
+		if ( hd <= k )
+		{
+			if ( verify ( i ) )
+			{
+				Occ->push_back ( i );
+			}
+			i += 1;
+			j += 1;
+		}
+		else
+		{
+			/* skip */
+			i += m - q;
+			j += m - q;
+		}
+
 	}
 }
