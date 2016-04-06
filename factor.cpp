@@ -21,9 +21,8 @@ void factor ( int a, int q, string x, double p, vector < string > * list )
 			if ( p * text[a][i] >= z )
 			{
 				string x2 = x;
-				double p2 = p;
-				p2 *= text[a][i];
-				x2.push_back ( alphabet[i] );
+				x2.push_back ( '0' + i );
+				double p2 = p * text[a][i];
 				factor ( a+1, q, x2, p2, list );
 			}
 		}

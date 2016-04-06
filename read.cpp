@@ -82,6 +82,7 @@ int read ( string filename, char mod )
 					dna[i][3] = 1;
 					break;
 				case 'N':
+//					dna[i][0] = dna[i][1] = dna[i][2] = dna[i][3] = 0.25;
 					x = rand() % 4;
 					dna[i][x] = 1;
 					break;

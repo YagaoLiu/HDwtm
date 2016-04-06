@@ -88,11 +88,11 @@ int main ( int argc, char ** argv )
 		}
 	}
 	/* read input */
-	if ( ! read ( pattern_file, 'p' ) )
+	if ( read ( pattern_file, 'p' ) < 0 )
 	{
 		return 0;
 	}
-	if ( ! read ( text_file, 't' ) )
+	if ( read ( text_file, 't' ) < 0 )
 	{
 		return 0;
 	}

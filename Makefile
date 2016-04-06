@@ -4,7 +4,7 @@ CC=     g++
  
 CFLAGS= -g -fopenmp -msse4.2 -fomit-frame-pointer -funroll-loops 
  
-LFLAGS= -std=c++11 -DNDEBUG  
+LFLAGS= -std=c++11 -O3 -DNDEBUG 
 
 EXE=	HDwpm 
  
