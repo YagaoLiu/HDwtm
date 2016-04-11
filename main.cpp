@@ -14,7 +14,6 @@ int			sigma	 = 4;
 string		pattern;
 double **	text;
 double		z;
-int times;
 unsigned int	k;
 unsigned int	m;
 unsigned int	n;
@@ -89,7 +88,6 @@ int main ( int argc, char ** argv )
 		{
 			cout << "Error: k must be a non-negative integer!\n";
 		}
-		times = sw.times;
 	}	
 	/* read input */
 	if ( read ( pattern_file, 'p' ) < 0 )
@@ -100,8 +98,6 @@ int main ( int argc, char ** argv )
 	{
 		return 0;
 	}
-
-	cout << "k=" << k << endl;
 
 	start = clock();
 

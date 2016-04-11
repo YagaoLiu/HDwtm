@@ -63,15 +63,6 @@ int decode_switches ( int argc, char * argv[], struct TSwitch * sw )
 				sw -> k = val;
 				args ++;
 				break;
-			case 'q':
-				val = strtol ( optarg, &ep, 10 );
-				if ( optarg == ep )
-				{
-					return 0;
-				}
-				sw -> times = val;
-				args ++;
-				break;
 			case 'h':
 				return 0;
 		}

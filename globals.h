@@ -10,7 +10,6 @@ extern string pattern;
 extern double ** text;
 extern double z;
 extern unsigned int k;
-extern int times;
 
 extern unsigned int m;
 extern unsigned int n;

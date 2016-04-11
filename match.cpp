@@ -28,7 +28,8 @@ double match ( vector < unsigned int > * Occ )
 	unsigned int i, j, l, t;
 	unsigned int q = log(m)/log(2);
 	unsigned int vt = 0;
-
+	unsigned int times = m/q < ceil(k/(0.2*q)+1) ? m/q : ceil(k/(0.2*q)+1) ; 
+	cout << times << endl;
 	clock_t start, finish;
 
 	long int index_size = ( unsigned int ) pow ( sigma, q );
@@ -46,6 +47,7 @@ double match ( vector < unsigned int > * Occ )
 	double itime = ( ( double ) finish - start ) / CLOCKS_PER_SEC;
 	cout << "Index time:" << itime << endl;
 
+		
 	i = 0;
 	while ( i < n - m + 1 )
 	{
