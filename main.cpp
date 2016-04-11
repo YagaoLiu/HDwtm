@@ -129,6 +129,7 @@ int main ( int argc, char ** argv )
 			result << Occ[i] << '\n';
 	}
 #endif
+
 	result.open ( "k-wsm.dat", ios::app );
 	result << m << '\t' << elapsed_time << '\t' << itime << '\n';
 	result.close();

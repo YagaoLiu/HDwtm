@@ -26,7 +26,7 @@ int decode_switches ( int argc, char * argv[], struct TSwitch * sw )
 	/* initialisation */
 	sw -> z	=	1;
 	sw -> k	=	1;					
-
+	
 	args = 0;
 
 	while ( ( opt = getopt_long ( argc, argv, "p:t:o:z:k:q:h", long_options, NULL ) ) != -1 )

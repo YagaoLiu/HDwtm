@@ -18,6 +18,7 @@ struct TSwitch
 };
 #endif
 
+
 int decode_switches ( int argc, char * argv[], TSwitch * sw );
 void usage ( void );
 int read ( string filename, char mod );

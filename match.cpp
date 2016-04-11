@@ -46,8 +46,6 @@ double match ( vector < unsigned int > * Occ )
 	double itime = ( ( double ) finish - start ) / CLOCKS_PER_SEC;
 	cout << "Index time:" << itime << endl;
 
-//	times = ceil ( k / q + 1 );
-
 	i = 0;
 	while ( i < n - m + 1 )
 	{
