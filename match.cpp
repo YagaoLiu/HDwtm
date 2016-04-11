@@ -10,10 +10,23 @@
 
 using namespace std;
 
-void match ( vector < unsigned int > * Occ )
+string text_heavy;
+
+int heavyletter ( int a )
+{
+	int letter = 0;
+	for ( int i = 1; i < sigma; i++ )
+	{
+		if ( text[a][i] > text[a][letter] )
+			letter = i;
+	}
+	return letter;
+}
+
+double match ( vector < unsigned int > * Occ )
 {
 	unsigned int i, j, l, t;
-	unsigned int q = 10;
+	unsigned int q = log(m)/log(2);
 	unsigned int vt = 0;
 
 	clock_t start, finish;
@@ -21,58 +34,28 @@ void match ( vector < unsigned int > * Occ )
 	long int index_size = ( unsigned int ) pow ( sigma, q );
 	unsigned int * index = new unsigned int [index_size];
 
+	text_heavy.resize ( n );
+	for ( i = 0; i < n; i++ )
+		text_heavy[i] = alphabet[ heavyletter(i) ];
+	
+
 	start = clock();
 	Index ( q, index_size, index );
 	finish = clock();
 
-	int i0,i1,i2,i3,i4,i5,i6,i7,i8;
-	i0 = i1 = i2 = i3 = i4 = i5 = i6 = i7 = i8 = 0;
+	double itime = ( ( double ) finish - start ) / CLOCKS_PER_SEC;
+	cout << "Index time:" << itime << endl;
 
-	for ( i = 0; i < index_size; i++ )
-	{
-		switch ( index[i] )
-		{
-			case 0:
-				i0++;
-				break;
-			case 1:
-				i1++;
-				break;
-			case 2:
-				i2++;
-				break;
-			case 3:
-				i3++;
-				break;
-			case 4:
-				i4++;
-				break;
-			case 5:
-				i5++;
-				break;
-			case 6:
-				i6++;
-				break;
-			case 7:
-				i7++;
-				break;
-			case 8:
-				i8++;
-				break;
-		}
-	}
-	
-	cout << "Index time:" << ( ( double ) finish - start ) / CLOCKS_PER_SEC << endl;
-	cout << "Index:\n" << "0:" << i0 << "\t1:" << i1 << "\t2:" << i2 << "\n3:" << i3 << "\t4:" << i4 <<"\t5:" << i5 << "\n6:" << i6 << "\t7:" << i7 << "\t8:" << i8 << endl;
+//	times = ceil ( k / q + 1 );
 
 	i = 0;
 	while ( i < n - m + 1 )
 	{
-		unsigned int hd;
-		for ( t = 0; t < 1; t++ )
+		unsigned int hd = 0;
+		for ( t = 0; t < times; t++ )
 		{
-			hd = q;
-			j = i + m - q - t;
+			unsigned int hd0 = q;
+			j = i + m - q - t * q;
 			string qstr;
 			double p = 1;
 			vector < string > qlist;
@@ -80,10 +63,11 @@ void match ( vector < unsigned int > * Occ )
 			for ( l = 0; l < qlist.size(); l ++ )
 			{
 				int id = stoi ( qlist[l], 0, 4 );
-				hd = min ( hd, index[id] );
+				hd0 = min ( hd0, index[id] );
 			}
 			qlist.clear();
 			vector < string > ().swap ( qlist );
+			hd += hd0;
 			if ( hd > k ) break;
 		}
 		if ( hd <= k )
@@ -103,4 +87,5 @@ void match ( vector < unsigned int > * Occ )
 
 	}
 	cout << "verify times:" << vt << endl;
+	return itime;
 }

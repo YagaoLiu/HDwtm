@@ -12,6 +12,7 @@ static struct option long_options[] =
 	{ "output",				required_argument,	NULL,	'o' },
 	{ "threshold",			required_argument,	NULL,	'z'	},
 	{ "mismatch",			required_argument,	NULL,	'k' },
+	{ "q-gramtime",			required_argument,	NULL,	'q' },
 	{ "help",				0,					NULL,	'h' },
 };
 
@@ -28,7 +29,7 @@ int decode_switches ( int argc, char * argv[], struct TSwitch * sw )
 
 	args = 0;
 
-	while ( ( opt = getopt_long ( argc, argv, "p:t:o:z:k:h", long_options, NULL ) ) != -1 )
+	while ( ( opt = getopt_long ( argc, argv, "p:t:o:z:k:q:h", long_options, NULL ) ) != -1 )
 	{
 		switch ( opt )
 		{
@@ -60,6 +61,15 @@ int decode_switches ( int argc, char * argv[], struct TSwitch * sw )
 					return 0;
 				}
 				sw -> k = val;
+				args ++;
+				break;
+			case 'q':
+				val = strtol ( optarg, &ep, 10 );
+				if ( optarg == ep )
+				{
+					return 0;
+				}
+				sw -> times = val;
 				args ++;
 				break;
 			case 'h':

@@ -10,7 +10,8 @@ using namespace std;
 struct TSwitch
 {
 	double z;
-	unsigned int k;
+	int k;
+	int times;
 	string pattern_file_name;
 	string text_file_name;
 	string output_file_name;
@@ -20,7 +21,7 @@ struct TSwitch
 int decode_switches ( int argc, char * argv[], TSwitch * sw );
 void usage ( void );
 int read ( string filename, char mod );
-void match ( vector < unsigned int > * Occ );
+double match ( vector < unsigned int > * Occ );
 void Index ( unsigned int q, long int size, unsigned int * M );
 string Num2Str ( unsigned int id, unsigned int length );
 unsigned int Str2Num ( string x );

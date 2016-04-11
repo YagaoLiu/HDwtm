@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <ctime>
+#include <cmath>
 
 #include "defs.h"
 
@@ -13,6 +14,7 @@ int			sigma	 = 4;
 string		pattern;
 double **	text;
 double		z;
+int times;
 unsigned int	k;
 unsigned int	m;
 unsigned int	n;
@@ -26,6 +28,7 @@ int main ( int argc, char ** argv )
 	unsigned int num_Occ;
 	vector<unsigned int> Occ;
 	ofstream result;
+	double kpc;
 
 	clock_t start, finish;
 
@@ -80,13 +83,14 @@ int main ( int argc, char ** argv )
 
 		if ( sw.k >= 0 )
 		{
-			k = sw.k;
+			k = sw.k ;
 		}
 		else
 		{
 			cout << "Error: k must be a non-negative integer!\n";
 		}
-	}
+		times = sw.times;
+	}	
 	/* read input */
 	if ( read ( pattern_file, 'p' ) < 0 )
 	{
@@ -97,9 +101,11 @@ int main ( int argc, char ** argv )
 		return 0;
 	}
 
+	cout << "k=" << k << endl;
+
 	start = clock();
 
-	match ( &Occ );
+	double itime =	match ( &Occ );
 
 	finish = clock();
 
@@ -110,7 +116,7 @@ int main ( int argc, char ** argv )
 	cout << "Pattern length:" << m << "\tText length:"<< n << '\n';
 	cout << "Number of Occurrences:" << num_Occ << '\n';
 	cout << "Elapsed time:" << elapsed_time << "s\n";
-	
+#if 0
 	result.open ( output_file );
 	if ( num_Occ == 0 )
 	{
@@ -122,6 +128,10 @@ int main ( int argc, char ** argv )
 		for ( int i = 0; i < num_Occ; i++ )
 			result << Occ[i] << '\n';
 	}
+#endif
+	result.open ( "k-wsm.dat", ios::app );
+	result << m << '\t' << elapsed_time << '\t' << itime << '\n';
+	result.close();
 
 	return 1;
 }
